@@ -1,11 +1,10 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component,  TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-view-customers',
-  templateUrl: './view-customers.component.html',
-  styleUrls: ['./view-customers.component.css']
+  templateUrl: './view-customers.component.html'
 })
-export class ViewCustomersComponent implements OnInit {
+export class ViewCustomersComponent {
 
   customers: any[] = [
     {
@@ -28,8 +27,9 @@ export class ViewCustomersComponent implements OnInit {
             {orderId: 8, order: "Keyboard"},
             {orderId: 9, order: "Cooler"}
     ] }
-  ]
-  customerName: string;
+  ];
+
+  customerName: string; // to store customer name
   isCustomerView: boolean;
   isOrderView: boolean;
   customerData: any;
@@ -38,79 +38,86 @@ export class ViewCustomersComponent implements OnInit {
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) { }
 
-  ngOnInit() {
-// let localStorageData = 
-//     this.allCustomerData = []
-  }
+// To Display Some Actions card for particular customer  
 
-  viewCustomerActions(customerDetails){
+  viewCustomerActions(customerDetails):void{
     this.customerName = customerDetails.name;
     this.isCustomerView = true;
-    console.log(customerDetails); 
     this.customerDetails = customerDetails;
     this.customerData = this.customerDetails.orders;   
   }
 
-  viewOrders(){
+//  View particular customer order details
+
+  viewOrders():void{
     this.isOrderView = true;
+    this.detailsView = false;
   }
 
-  viewCustomerDetails(){
+//  hide or show customer information
+  viewCustomerDetails():void{
     this.isOrderView = false;
     this.detailsView = true;
   }
 
-  addCustomerDetails(addCustomer: TemplateRef<any>) {
+// To open the pop-up bootstrap model for Add customer information
+
+
+  addCustomerDetails(addCustomer: TemplateRef<any>):void {
     this.modalRef = this.modalService.show(addCustomer);
   }
 
-  editCustomerDetails(editCustomer: TemplateRef<any>) {
+// To open the pop-up bootstrap model for edit particular customer information
+
+
+  editCustomerDetails(editCustomer: TemplateRef<any>) :void{
     this.modalRef = this.modalService.show(editCustomer);
   }
 
-  execOnClose($event: any){
+// To close the pop-up bootstrap model
+
+  execOnClose($event: any):void{
     this.modalRef.hide();
   }
 
+// To save the new customer in customers array
 
-  saveData(data){
-    console.log(data);    
+  saveData(data):void{
     data.id = this.customers.length + 1;
     this.customers.push(data);
   }
 
-  updateData(data){
-    debugger
-    console.log(data);
+// To update the particular customer information 
+
+  updateData(data):void{
     const customerIndex = this.customers.findIndex(p=>{
       return p.id === data.id;
-    })
-
+    });
 
     const customer = {
       ...this.customers[customerIndex]
     }
 
-    // customer.name = event.target.value;
     customer.name = data.name;
     customer.mobile = data.mobile; 
     customer.email = data.email; 
 
     const customers = [...this.customers]
     customers[customerIndex] = customer;
-    // this.setState({
-    //   customers:customers
-    // })
   }
 
+// To Delete the particular customer information 
 
-  deleteCustomer(){
-    const customerIndex =  this.customerDetails.id;
-
-    // const customer = this.state.customers.slice();
-    let customer = [...this.customers];
+  deleteCustomer():void{
+    const customerIndex = this.customers.findIndex(p=>{
+      return p.id === this.customerDetails.id;
+    });
+    const customer = [...this.customers];
     customer.splice(customerIndex, 1);
     this.customers = customer;
+    this.isOrderView = false;
+    this.detailsView = false;
+    this.isCustomerView = false;
   }
 
 }

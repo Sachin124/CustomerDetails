@@ -2,40 +2,40 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-customers',
-  templateUrl: './add-customers.component.html',
-  styleUrls: ['./add-customers.component.css']
+  templateUrl: './add-customers.component.html'
 })
 export class AddCustomersComponent implements OnInit {
 
-  @Input() customerDetails:any;
+  @Input() customerDetails: any;
   @Output() onClose = new EventEmitter();
   @Output() updateData = new EventEmitter();
   @Output() saveData = new EventEmitter();
 
-  editData: any ={};
+  editData: any = {};
+  modalName: string;
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.customerDetails);    
-    if(this.customerDetails){
+  ngOnInit():void {
+    if (this.customerDetails) {
       this.editData = this.customerDetails;
-    }else{
+      this.modalName = `Edit ${this.customerDetails.name} Information`;
+    } else {
+      this.modalName = `Add New Customer Information`;
       this.customerDetails = null;
     }
   }
 
-  closeModal(){
-    this.onClose.emit(); 
+  closeModal():void {
+    this.onClose.emit();
     this.onClose.emit('all closed');
   }
 
-  save(value){
-    debugger
+  save(value):void {
     this.saveData.emit(value);
   }
 
 
-  update(value){
+  update(value):void {
     value.id = this.editData.id;
     this.updateData.emit(value);
   }
