@@ -3,9 +3,17 @@ body {
   font-family: 'Montserrat', sans-serif !important;
 }
 
+.body-background {
+  background-color: #eee;
+}
+
+.card-box-shadow {
+  box-shadow: 0 2px 4px 0 #cacaca;
+}
+
 .sidenav {
   height: 100%;
-  width: 160px;
+  /* width:auto; */
   position: fixed;
   z-index: 1;
   top: 0;
@@ -28,7 +36,7 @@ body {
 
 .active{
   color: #f1f1f1;
-  background-color: #818181;
+  /* background-color: #818181; */
 }
 .main {
   margin-left: 160px;
@@ -45,7 +53,10 @@ body {
   /* Increased text to enable scrolling */
 }
 
-
+.gp-o{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
 .main-content {
   margin-left: 160px;
   /* Same as the width of the sidenav */

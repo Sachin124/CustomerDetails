@@ -5,7 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './view-customers.component.html'
 })
 export class ViewCustomersComponent {
-
+// Default customer Array
   customers: any[] = [
     {
       id: 1, name: "John Due", mobile: "1234567890", email: "abc@example.com",
