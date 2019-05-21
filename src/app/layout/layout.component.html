@@ -17,22 +17,21 @@
 
 
 <div class="container-fluid">
-    <div class="row min-vh-100">
-        <aside class="col-12 col-md-2 p-0 bg-dark">
-            <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2">
-                <app-sidebar></app-sidebar>
-            </nav>
-        </aside>
-       
-        <main class="col bg-faded py-3 body-background">
-            <div class="col-12">
+  <div class="row min-vh-100">
+    <aside class="col-12 col-md-2 p-0 bg-dark">
+      <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2">
+        <app-sidebar></app-sidebar>
+      </nav>
+    </aside>
 
-          <div class="gp-o">
-                  <app-navbar></app-navbar>
-                </div>
-          </div>
-           
-            <router-outlet></router-outlet>
-        </main>
-    </div>
+    <main class="col padding-off body-background bg-faded ">
+      <div class="gp-o">
+        <app-navbar></app-navbar>
+      </div>
+      <div class="py-3 padding-on">
+          <router-outlet></router-outlet>
+
+      </div>
+    </main>
+  </div>
 </div>
