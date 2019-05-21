@@ -23,7 +23,7 @@
         <li class="nav-item">
             <a class="nav-link pl-0 text-nowrap" href="#"> <img src="../../../../favicon.ico"/><span class="font-weight-bold" routerLink="/dashboard">Assignment</span></a>
         </li>
-        <li routerLinkActive="active" *ngFor="let menuitem of menuItems" class="nav-item">
+        <li routerLinkActive="active btn gradient-navbar gradient-button-3" *ngFor="let menuitem of menuItems" class="nav-items">
             <a class="nav-link pl-0" [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link'"><i class="fa fa-{{menuitem.icontype}}  fa-fw"></i> <span class="d-none d-md-inline">{{menuitem.title}}</span></a>
         </li>
       
